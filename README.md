@@ -17,7 +17,7 @@ Instalace
 ---------
 
 1.  Ujistěte se, že máte nainstalované `streamlink` a `ffmpeg`.
-2.  Uložte následující skript do souboru `/usr/local/bin/skript.sh`:
+2.  Uložte následující skript do souboru `/usr/local/bin/script.sh`:
 
     
     #!/bin/bash
@@ -34,7 +34,7 @@ Instalace
     SOURCE9="/usr/bin/env streamlink --stdout --default-stream best --url https://www.youtube.com/watch?v=another_video_id"
     
     # Vytvořte 3x3 mřížku a výstup na stdout
-    ffmpeg \
+    /usr/bin/ffmpeg \
     -i <($SOURCE1) -i <($SOURCE2) -i <($SOURCE3) -i <($SOURCE4) -i <($SOURCE5) -i <($SOURCE6) -i <($SOURCE7) -i <($SOURCE8) -i <($SOURCE9) \
     -filter_complex \
     "[0:v]scale=320:240[tile1]; [1:v]scale=320:240[tile2]; [2:v]scale=320:240[tile3]; \
@@ -49,7 +49,7 @@ Instalace
 
 3.  Udělejte skript spustitelným:
 
-    chmod +x /usr/local/bin/streamlink_ffmpeg_grid_multi.sh
+    chmod +x /usr/local/bin/script.sh
 
 Konfigurace tvheadend
 ---------------------
@@ -57,7 +57,7 @@ Konfigurace tvheadend
 1.  Otevřete `tvheadend` a přidejte novou síť typu IPTV Network
 2.  Nastavení následující : Povoleno (ano) Název síťě (Youtube) Vytvořit buket (ano) Název s´tě poskytovatele (Youtube) Ignorovat čísla programů od poskytovatele (ano) Znaková sada (UTF-8) Skenovat po vytvoření (ne) Skip startup scan (ano) ID služby (2)
 3.  Přejdeme na záložky Muxy a vytvoříme Mux
-4.  Nastavení následující : EPG (Zakázat) URL : (pipe:///usr/local/bin/skript.sh) Jméno Muxu (Libovolné jméno) číslo programu (Takové jako ještě nepoužíváte) Název služby (Libovolné jméno) Znaková sada (UTF-8) Accept zero value for TSID:(ano). Volitelné URL ikony a štítky programů
+4.  Nastavení následující : EPG (Zakázat) URL : (pipe:///usr/local/bin/script.sh) Jméno Muxu (Libovolné jméno) číslo programu (Takové jako ještě nepoužíváte) Název služby (Libovolné jméno) Znaková sada (UTF-8) Accept zero value for TSID:(ano). Volitelné URL ikony a štítky programů
 5.  Přejdeme do Program/Bukety zaškrkneme youtube a dáme Ulož
 6.  Nyní se nám namapují muxy na konkrétní programy a jsou k dispozici v přehrávání pod danným číslem kanálů
 
